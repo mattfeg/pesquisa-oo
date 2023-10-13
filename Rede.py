@@ -44,3 +44,4 @@ class Rede:
     def NumArestas(self):
         self.__NumArestas = len(self.__rede.edges)
         return self.__NumArestas
+    
