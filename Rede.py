@@ -22,6 +22,16 @@ class Rede:
     def pathCSV(self):
         return self.__pathCSV
     
+    @property
+    def NumNodes(self):
+        self.__NumNodes = len(self.__rede.nodes)
+        return self.__NumNodes
+    
+    @property
+    def NumArestas(self):
+        self.__NumArestas = len(self.__rede.edges)
+        return self.__NumArestas
+
     def CriarRede(self):
         df = pd.read_csv(self.__pathCSV, sep=',', encoding='Latin1',index_col='CNES')
         for municipio in df.columns:
@@ -34,14 +44,4 @@ class Rede:
     def MostrarRede(self):
         nx.draw(self.__rede, with_labels=True)
         plt.show()
-    
-    @property
-    def NumNodes(self):
-        self.__NumNodes = len(self.__rede.nodes)
-        return self.__NumNodes
-    
-    @property
-    def NumArestas(self):
-        self.__NumArestas = len(self.__rede.edges)
-        return self.__NumArestas
     

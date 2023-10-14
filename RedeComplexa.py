@@ -29,9 +29,9 @@ class RedeComplexa:
         print("Arestas RC: ",len(self.__redeComplexa.edges))
     
     def mostrarRedeComplexa(self):
-        nx.draw(self.__redeComplexa, with_labels=True)
+        nx.draw_circular(self.__redeComplexa, with_labels=True)
         plt.show()
               
-    def MostrarRedesIndividuais(self,rede: Rede):
+    def MostrarRedesIndividuais(self):
         for i in self.__listaRedes:
-            i.rede.MostrarRede()
+            i.MostrarRede()
