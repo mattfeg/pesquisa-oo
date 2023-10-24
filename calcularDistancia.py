@@ -1,8 +1,8 @@
 import googlemaps
 import networkx as nx
 import pandas as pd
+from apiKey import api_key
 
-api_key = "AIzaSyBmEf-CevRAfLfIBM9BMs6mnBuZb0uoUic"
 gmaps = googlemaps.Client(key=api_key)
 
 def buscarDistância(aresta):
