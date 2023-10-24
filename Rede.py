@@ -1,6 +1,7 @@
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
+import numpy as np
 
 class Rede:
     def __init__(self,path):
@@ -9,7 +10,7 @@ class Rede:
         self.__rede = nx.DiGraph()
         self.__NumNodes = len(self.__rede.nodes)
         self.__NumArestas = len(self.__rede.edges)
-    
+
     @property
     def rede(self):
         return self.__rede
@@ -36,9 +37,10 @@ class Rede:
         df = pd.read_csv(self.__pathCSV, sep=',', encoding='Latin1',index_col='CNES')
         for municipio in df.columns:
             for hospital in df.index:
-                self.__rede.add_edge(municipio, hospital, weight=df[municipio][hospital])
-        print("Nodes: ",len(self.__rede.nodes))
-        print("Arestas: ",len(self.__rede.edges))
+                if df[municipio][hospital] > 0: #Remove Arestas com peso 0
+                    self.__rede.add_edge(municipio, hospital, weight=df[municipio][hospital])
+        #print("Nodes: ",len(self.__rede.nodes))
+        #print("Arestas: ",len(self.__rede.edges))
         return print("Rede Criada: ",self)
     
     def MostrarRede(self):
