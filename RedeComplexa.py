@@ -3,9 +3,10 @@ import networkx as nx
 import numpy as np
 
 class RedeComplexa:
-    def __init__(self) -> None:
+    def __init__(self,nome) -> None:
         self.__listaRedes = []
         self.__redeComplexa = nx.DiGraph()
+        self.nome = nome
     
     @property
     def listaRedes(self):
@@ -39,41 +40,51 @@ class RedeComplexa:
         listaGraus = []
         for i in self.__listaRedes:
             listaGraus.append(np.mean([d for n, d in i.rede.degree()]))
-        print(listaGraus)
+        plt.title(f"Grau Médio por mês da Rede {self.nome}")
         plt.plot(range(1,len(listaGraus)+1),listaGraus)
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/Graus{self.nome}.png')
+        plt.show()
     
     def imprimirQuantidadeNos(self):
         listaNos = []
         for i in self.__listaRedes:
             listaNos.append(len(i.rede.nodes))
+        plt.title(f"Quantidade de Nós por mês da Rede {self.nome}")
         plt.plot(range(1,len(listaNos)+1),listaNos)
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntNos{self.nome}.png')
+        plt.show()
     
     def imprimirQuantidadeArestas(self):
         listaArestas = []
         for i in self.__listaRedes:
             listaArestas.append(len(i.rede.edges))
+        plt.title(f"Quantidade de Arestas por mês da Rede {self.nome}")
         plt.plot(range(1,len(listaArestas)+1),listaArestas)
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntArs{self.nome}.png')
+        plt.show()
 
     def imprimirDensidade(self):
         listaDensidade = []
         for i in self.__listaRedes:
             listaDensidade.append(nx.density(i.rede))
+        plt.title(f"Densidade por mês da Rede {self.nome}")
         plt.plot(range(1,len(listaDensidade)+1),listaDensidade)
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/Densidade{self.nome}.png')
+        plt.show()
 
     def imprimirDistribuiçãoGraus(self):
         GrausRedeComplexa = [d for n, d in self.__redeComplexa.degree()]
         print(GrausRedeComplexa)
+        plt.title(f"Distribuição de Graus por mês da Rede {self.nome}")
         plt.hist(GrausRedeComplexa, bins=np.arange(1,max(GrausRedeComplexa),1), density=False, alpha=0.75, color='b', align='left')
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/DistribuiçãoGraus{self.nome}.png')
+        plt.show()
 
     def imprimirQuantidadePesos(self):
         listaPesos = []
         for i in self.__listaRedes:
             listaPesos.append(np.sum([w for s,t,w in i.rede.edges.data('weight')]))
-        print(listaPesos)
+        plt.title(f"Quantidade internações por mês da Rede {self.nome}")
         plt.plot(range(1,len(listaPesos)+1),listaPesos)
-        #plt.show()
+        plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntInternações{self.nome}.png')
+        plt.show()
