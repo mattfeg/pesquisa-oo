@@ -1,6 +1,5 @@
 import requests
-
-api_key = "AIzaSyBmEf-CevRAfLfIBM9BMs6mnBuZb0uoUic"
+from apiKey import api_key
 
 url = "https://maps.googleapis.com/maps/api/geocode/json"
 
