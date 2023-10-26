@@ -18,7 +18,10 @@ Para a realização deste estudo, recorreu-se ao [DATASUS](https://datasus.saude
 ## Metodologia
 
 Para mensurar o impacto da pandemia, foram utilizadas as seguintes análises na rede:
-- Centralidade dos Graus;
+- Grau médio;
+- Quantidade de Nós;
+- Quantidade de Arestas;
+- Quantidade de Internações;
 - Densidade da Rede;
 - Distância percorrida por pacientes.
 
@@ -37,6 +40,15 @@ A distância percorrida por pacientes é uma análise crucial para entender a ac
 ## Resultados
 
 Resultados
+
+### Rede de Cirurgias
+![Alt text](Cirurgias.png)
+### Rede Intercorrências
+![Alt text](Intercorr%C3%AAncias.png)
+### Rede Internações Domiciliares
+![Alt text](<Internações Domicilares.png>)
+### Rede Completa
+![Alt text](Completa.png)
 
 ## Conclusão
 
