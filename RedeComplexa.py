@@ -40,8 +40,19 @@ class RedeComplexa:
         listaGraus = []
         for i in self.__listaRedes:
             listaGraus.append(np.mean([d for n, d in i.rede.degree()]))
+
+        # Gera os rótulos do eixo X com anos correspondentes
+        anos = np.arange(2016, 2024, 1)
+        meses = np.arange(1, 97, 1)
+        posicao_dos_anos = [(i - 2016 + 1) * 12 for i in anos]  # Posições onde os anos começam
+
         plt.title(f"Grau Médio por mês da Rede {self.nome}")
-        plt.plot(range(1,len(listaGraus)+1),listaGraus)
+        plt.plot(meses, listaGraus)
+
+        plt.xlabel('Tempo')
+        plt.ylabel('Grau Médio')
+
+        plt.xticks(posicao_dos_anos, anos)  # Define os rótulos e as posições dos anos no eixo X
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/Graus{self.nome}.png')
         plt.show()
     
@@ -88,3 +99,6 @@ class RedeComplexa:
         plt.plot(range(1,len(listaPesos)+1),listaPesos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntInternações{self.nome}.png')
         plt.show()
+    
+        
+        

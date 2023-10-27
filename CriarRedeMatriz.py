@@ -9,12 +9,12 @@ def CriarRedeMatriz(caminho_csv): # Informar o caminho no seguinte formato './Da
     filtroTotal = filtroTratamentoClinico+filtroIntercorrencia + filtroCirurgia + filtroInternacaoDomiciliar
     
     
-    # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])] #FILTRO GERAL
+    df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])] #FILTRO GERAL
     # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroTotal))] #FILTRO Total
     # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroInternacaoDomiciliar))] #FILTRO INTERNAÇÃO DOMICILIAR
     # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroTratamentoClinico))] #FILTRO TRATAMENTO CLINICO
     # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroIntercorrencia))] #FILTRO INTERCORRENCIA
-    df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349']) & (df['PROC_REA'].isin(filtroCirurgia))] #FILTRO CIRURGIA
+    # df = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349']) & (df['PROC_REA'].isin(filtroCirurgia))] #FILTRO CIRURGIA
     
     
 

@@ -2,12 +2,12 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from Rede import *
 from RedeComplexa import *
-from calcularDistancia import *
+# from calcularDistancia import *
 
 RC1 = RedeComplexa("Completa") #REDE COMPLETA
-RC2 = RedeComplexa("Cirurgias") #REDE CIRURGIAS
-RC3 = RedeComplexa("Intercorrências") #REDE INTERCORRENCIAS
-RC4 = RedeComplexa("Internações Domiciliares") #REDE INTERNACOES DOMICILIARES
+# RC2 = RedeComplexa("Cirurgias") #REDE CIRURGIAS
+# RC3 = RedeComplexa("Intercorrências") #REDE INTERCORRENCIAS
+# RC4 = RedeComplexa("Internações Domiciliares") #REDE INTERNACOES DOMICILIARES
 
 # data_inicial = datetime(2015, 1, 1)
 # data_final = datetime(2022, 12, 31)
@@ -65,7 +65,9 @@ RC4 = RedeComplexa("Internações Domiciliares") #REDE INTERNACOES DOMICILIARES
 #     data += relativedelta(months=1)
 
 
-ListaRedes = [RC1,RC2,RC3,RC4]
+# ListaRedes = [RC1,RC2,RC3,RC4]
+ListaRedes = [RC1]
+
 
 for i in ListaRedes:
     data_inicial = datetime(2015, 1, 1)
