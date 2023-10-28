@@ -3,6 +3,7 @@ import networkx as nx
 import numpy as np
 
 class RedeComplexa:
+    
     def __init__(self,nome) -> None:
         self.__listaRedes = []
         self.__redeComplexa = nx.DiGraph()
@@ -35,24 +36,22 @@ class RedeComplexa:
     def MostrarRedesIndividuais(self):
         for i in self.__listaRedes:
             i.MostrarRede()
+    
+    #Infos do eixo dos Plots
+    anos = np.arange(2015, 2024, 1)
+    meses = np.arange(1, 97, 1)
+    posicao_dos_anos = [(i - 2016 + 1) * 12 for i in anos]
 
     def imprimirGraus(self):
         listaGraus = []
         for i in self.__listaRedes:
             listaGraus.append(np.mean([d for n, d in i.rede.degree()]))
 
-        # Gera os rótulos do eixo X com anos correspondentes
-        anos = np.arange(2016, 2024, 1)
-        meses = np.arange(1, 97, 1)
-        posicao_dos_anos = [(i - 2016 + 1) * 12 for i in anos]  # Posições onde os anos começam
-
         plt.title(f"Grau Médio por mês da Rede {self.nome}")
-        plt.plot(meses, listaGraus)
-
+        plt.plot(RedeComplexa.meses, listaGraus)
         plt.xlabel('Tempo')
         plt.ylabel('Grau Médio')
-
-        plt.xticks(posicao_dos_anos, anos)  # Define os rótulos e as posições dos anos no eixo X
+        plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/Graus{self.nome}.png')
         plt.show()
     
@@ -60,8 +59,12 @@ class RedeComplexa:
         listaNos = []
         for i in self.__listaRedes:
             listaNos.append(len(i.rede.nodes))
+
         plt.title(f"Quantidade de Nós por mês da Rede {self.nome}")
-        plt.plot(range(1,len(listaNos)+1),listaNos)
+        plt.plot(RedeComplexa.meses,listaNos)
+        plt.xlabel('Tempo')
+        plt.ylabel('Quantidade de Nós')
+        plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntNos{self.nome}.png')
         plt.show()
     
@@ -70,7 +73,10 @@ class RedeComplexa:
         for i in self.__listaRedes:
             listaArestas.append(len(i.rede.edges))
         plt.title(f"Quantidade de Arestas por mês da Rede {self.nome}")
-        plt.plot(range(1,len(listaArestas)+1),listaArestas)
+        plt.plot(RedeComplexa.meses,listaArestas)
+        plt.xlabel('Tempo')
+        plt.ylabel('Quantidade de Arestas')
+        plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntArs{self.nome}.png')
         plt.show()
 
@@ -79,15 +85,17 @@ class RedeComplexa:
         for i in self.__listaRedes:
             listaDensidade.append(nx.density(i.rede))
         plt.title(f"Densidade por mês da Rede {self.nome}")
-        plt.plot(range(1,len(listaDensidade)+1),listaDensidade)
+        plt.plot(RedeComplexa.meses,listaDensidade)
+        plt.xlabel('Tempo')
+        plt.ylabel('Densidade')
+        plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/Densidade{self.nome}.png')
         plt.show()
 
     def imprimirDistribuiçãoGraus(self):
         GrausRedeComplexa = [d for n, d in self.__redeComplexa.degree()]
-        print(GrausRedeComplexa)
         plt.title(f"Distribuição de Graus por mês da Rede {self.nome}")
-        plt.hist(GrausRedeComplexa, bins=np.arange(1,max(GrausRedeComplexa),1), density=False, alpha=0.75, color='b', align='left')
+        plt.hist(GrausRedeComplexa, bins=np.arange(1, max(GrausRedeComplexa) + 1, 1), alpha=0.75, color='b', align='mid')
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/DistribuiçãoGraus{self.nome}.png')
         plt.show()
 
@@ -96,7 +104,10 @@ class RedeComplexa:
         for i in self.__listaRedes:
             listaPesos.append(np.sum([w for s,t,w in i.rede.edges.data('weight')]))
         plt.title(f"Quantidade internações por mês da Rede {self.nome}")
-        plt.plot(range(1,len(listaPesos)+1),listaPesos)
+        plt.plot(RedeComplexa.meses,listaPesos)
+        plt.xlabel('Tempo')
+        plt.ylabel('Quantidade de Internações')
+        plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntInternações{self.nome}.png')
         plt.show()
     
