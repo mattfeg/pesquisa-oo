@@ -6,8 +6,10 @@ class RedeComplexa:
     
     def __init__(self,nome) -> None:
         self.__listaRedes = []
-        self.__redeComplexa = nx.DiGraph()
+        #self.__redeComplexa = nx.DiGraph()
+        self.__redeComplexa = None
         self.nome = nome
+
     
     @property
     def listaRedes(self):
@@ -24,11 +26,12 @@ class RedeComplexa:
         return print(len(self.__listaRedes))
     
     def criarRedeComplexa(self,):
-        for i in self.__listaRedes:
-            self.__redeComplexa.add_nodes_from(i.rede.nodes)
-            #self.__redeComplexa.add_edges_from(i.rede.edges)
-            self.__redeComplexa.add_weighted_edges_from(i.rede.edges.data('weight'))
-            
+        listaRedes = [i.rede for i in self.__listaRedes]
+        self.__redeComplexa = nx.compose_all(listaRedes)
+        print(listaRedes)
+        print("Nos Rede Complexa: ",len(self.__redeComplexa.nodes))
+        print("Arestas Rede Complexa: ",len(self.__redeComplexa.edges))
+
     def mostrarRedeComplexa(self):
         nx.draw_circular(self.__redeComplexa, with_labels=True)
         plt.show()
@@ -110,6 +113,15 @@ class RedeComplexa:
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f'./Figuras/FigurasRede{self.nome}/QntInternações{self.nome}.png')
         plt.show()
+
+    # def imprimirDistanciasPorMes(self):
+    #     listaDistancias = []
+    #     for aresta in self.__listaRedes:
+    #         listaDistancias.append(np.sum(
+    #         #listaDistancias.append(aresta[2]['distancia'])
+    #     print(listaDistancias)
+    #     # plt.title(f"Distâncias por mês da Rede {self.nome}")
+    #     # plt.plot
     
         
         

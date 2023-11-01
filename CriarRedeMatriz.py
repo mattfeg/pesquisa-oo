@@ -8,8 +8,7 @@ def CriarRedeMatriz(caminho_csv): # Informar o caminho no seguinte formato './Da
     filtroIntercorrencia = [301060070, 301060088, 304100013]
     filtroTotal = filtroTratamentoClinico + filtroIntercorrencia + filtroCirurgia + filtroInternacaoDomiciliar
     
-    dfgeral = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])] #FILTRO GERAL
-    #dftotal = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroTotal))] #FILTRO TOTAL
+    dftotal = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroTotal))] #FILTRO TOTAL
     dfInternaçaoDomiciliar = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroInternacaoDomiciliar))] #FILTRO INTERNAÇÃO DOMICILIAR
     dfTratamentoClinico = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroTratamentoClinico))] #FILTRO TRATAMENTO CLINICO
     dfIntercorrencia = df[df['DIAG_PRINC'].isin(['C340', 'C341', 'C342', 'C343', 'C348', 'C349'])&(df['PROC_REA'].isin(filtroIntercorrencia))] #FILTRO INTERCORRENCIA
@@ -17,8 +16,7 @@ def CriarRedeMatriz(caminho_csv): # Informar o caminho no seguinte formato './Da
                     (df['PROC_REA'].isin(filtroCirurgia))|
                     (df['PROC_REA'].astype(str).str.startswith(('41201','41202','41203','41204','41205'))))] #FILTRO CIRURGIA
 
-    dictDfs = {'Completa':dfgeral, 'Internação Domiciliar':dfInternaçaoDomiciliar, 'Tratamento Clínico':dfTratamentoClinico, 'Intercorrência':dfIntercorrencia, 'Cirurgia':dfCirurgia}
-
+    dictDfs = {'Completa':dftotal, 'Internação Domiciliar':dfInternaçaoDomiciliar, 'Tratamento Clínico':dfTratamentoClinico, 'Intercorrência':dfIntercorrencia, 'Cirurgia':dfCirurgia}
 
     dfcnes = pd.read_csv('./DadosSUS/CNESBR.csv', sep=',', encoding='Latin1')
     dfmunics = pd.read_csv('./DadosSUS/MUNICSBR.csv', sep=',')
@@ -28,7 +26,6 @@ def CriarRedeMatriz(caminho_csv): # Informar o caminho no seguinte formato './Da
         dataf['MUNIC_RES'] = dataf['MUNIC_RES'].map(dfmunics.set_index('COD')['MUNIC'])
         tabela_cruzada = pd.crosstab(dataf['CNES'] , dataf['MUNIC_RES'])
         tabela_cruzada.to_csv(f"./RedesMatrizFiltradas/{nome}/Matriz{caminho_csv.split('/')[-1].split('.')[0]}.csv", index=True, header=True)
-    
 
     # df['CNES'] = df['CNES'].map(dfcnes.set_index('CNES')['NOMEFANT'])
     # df['MUNIC_RES'] = df['MUNIC_RES'].map(dfmunics.set_index('COD')['MUNIC'])
