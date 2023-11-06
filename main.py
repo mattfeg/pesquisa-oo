@@ -2,6 +2,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from Rede import *
 from RedeComplexa import *
+
 # from calcularDistancia import *
 
 RC1 = RedeComplexa("Completa")  # REDE COMPLETA
@@ -14,8 +15,8 @@ RC5 = RedeComplexa("Tratamento Clínico")  # REDE INTERNACOES DOMICILIARES
 ListaRedes = [RC1]
 
 for i in ListaRedes:
-    data_inicial = datetime(2015, 1, 1) #DATA EXATA
-    data_final = datetime(2022, 12, 31) #DATA EXATA
+    data_inicial = datetime(2015, 1, 1)  # DATA EXATA
+    data_final = datetime(2022, 12, 31)  # DATA EXATA
     data = data_inicial
     while data <= data_final:
         ano = str(data.year)[2:]
@@ -31,7 +32,7 @@ for i in ListaRedes:
 
 for i in ListaRedes:
     i.criarRedeComplexa()
-    
+
     # Plots
     # i.imprimirGraus()
     # i.imprimirQuantidadeNos()
@@ -40,7 +41,7 @@ for i in ListaRedes:
     # i.imprimirDensidade()
     # i.imprimirDistribuiçãoGraus()
     plt.figure()
-    i.imprimirDistanciasPorMes() #INCOMPLETO
+    i.imprimirDistanciasPorMes()  # INCOMPLETO
     plt.show()
 
 # Distancias

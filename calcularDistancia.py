@@ -5,6 +5,7 @@ from apiKey import api_key
 
 gmaps = googlemaps.Client(key=api_key)
 
+
 def buscarDistância(aresta):
     origem = aresta[0]
     destino = aresta[1]
@@ -16,18 +17,36 @@ def buscarDistância(aresta):
         duracao = matrix["duration"]["text"]
         print(f"A distância entre {origem} e {destino} é de {distancia}.")
         print(f"A duração estimada da viagem é de {duracao}.\n")
-        return distancia,duracao
-        
+        return distancia, duracao
+
     else:
         print("Não foi possível calcular a distância.")
-        return None,None
+        return None, None
 
-#Plotar Arestas e suas propriedades
+
+# Plotar Arestas e suas propriedades
 def gerarDfDistancias(rede):
-    dfarestas = pd.DataFrame(columns=['Source', 'Target', 'Weight','Distancia','Duracao'])
+    dfarestas = pd.DataFrame(
+        columns=["Source", "Target", "Weight", "Distancia", "Duracao"]
+    )
     for aresta in rede.edges():
-        distancia,duracao = buscarDistância([aresta[0], aresta[1]])
+        distancia, duracao = buscarDistância([aresta[0], aresta[1]])
         if distancia is not None and duracao is not None:
-            dfarestas = pd.concat([dfarestas, pd.DataFrame({'Source': aresta[0], 'Target': aresta[1], 'Weight': rede[aresta[0]][aresta[1]]['weight'],'Distancia':distancia,'Duracao':duracao}, index=[0])], ignore_index=True)
+            dfarestas = pd.concat(
+                [
+                    dfarestas,
+                    pd.DataFrame(
+                        {
+                            "Source": aresta[0],
+                            "Target": aresta[1],
+                            "Weight": rede[aresta[0]][aresta[1]]["weight"],
+                            "Distancia": distancia,
+                            "Duracao": duracao,
+                        },
+                        index=[0],
+                    ),
+                ],
+                ignore_index=True,
+            )
     print(dfarestas)
-    dfarestas.to_csv('distancias.csv', index=False, encoding='utf-8')
+    dfarestas.to_csv("distancias.csv", index=False, encoding="utf-8")

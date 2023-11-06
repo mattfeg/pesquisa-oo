@@ -3,13 +3,13 @@ import networkx as nx
 import numpy as np
 from configGrafico import *
 
+
 class RedeComplexa:
     def __init__(self, nome) -> None:
         self.__listaRedes = []
         self.__redeComplexa = nx.DiGraph()
-        #self.__redeComplexa = None
+        # self.__redeComplexa = None
         self.nome = nome
-        
 
     @property
     def listaRedes(self):
@@ -34,14 +34,14 @@ class RedeComplexa:
 
     def mostrarRedeComplexa(self):
         nx.draw_circular(self.__redeComplexa, with_labels=True)
-        #plt.show()
+        # plt.show()
 
     def MostrarRedesIndividuais(self):
         for i in self.__listaRedes:
             i.MostrarRede()
 
     # Infos do eixo dos Plots
-    anos = np.arange(2015, 2024, 1) #Ano Inicial +1 / Ano final + 2
+    anos = np.arange(2015, 2024, 1)  # Ano Inicial +1 / Ano final + 2
     meses = np.arange(1, 97, 1)
 
     # anos = np.arange(2015, 2016, 1)
@@ -60,7 +60,7 @@ class RedeComplexa:
         plt.ylabel("Grau Médio")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f"./Figuras/FigurasRede{self.nome}/Graus{self.nome}.png")
-        #plt.show()
+        # plt.show()
 
     def imprimirQuantidadeNos(self):
         listaNos = []
@@ -73,7 +73,7 @@ class RedeComplexa:
         plt.ylabel("Quantidade de Nós")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f"./Figuras/FigurasRede{self.nome}/QntNos{self.nome}.png")
-        #plt.show()
+        # plt.show()
 
     def imprimirQuantidadeArestas(self):
         listaArestas = []
@@ -85,7 +85,7 @@ class RedeComplexa:
         plt.ylabel("Quantidade de Arestas")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f"./Figuras/FigurasRede{self.nome}/QntArs{self.nome}.png")
-        #plt.show()
+        # plt.show()
 
     def imprimirDensidade(self):
         listaDensidade = []
@@ -97,7 +97,7 @@ class RedeComplexa:
         plt.ylabel("Densidade")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f"./Figuras/FigurasRede{self.nome}/Densidade{self.nome}.png")
-        #plt.show()
+        # plt.show()
 
     def imprimirDistribuiçãoGraus(self):
         GrausRedeComplexa = [d for n, d in self.__redeComplexa.degree()]
@@ -112,7 +112,7 @@ class RedeComplexa:
         plt.savefig(
             f"./Figuras/FigurasRede{self.nome}/DistribuiçãoGraus{self.nome}.png"
         )
-        #plt.show()
+        # plt.show()
 
     def imprimirQuantidadePesos(self):
         listaPesos = []
@@ -124,12 +124,14 @@ class RedeComplexa:
         plt.ylabel("Quantidade de Internações")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.savefig(f"./Figuras/FigurasRede{self.nome}/QntInternações{self.nome}.png")
-        #plt.show()
+        # plt.show()
 
     def imprimirDistanciasPorMes(self):
         listaDistancias = []
         for i in self.__listaRedes:
-            listaDistancias.append(np.mean([d for s, t, d in i.rede.edges.data("distancia")]))
+            listaDistancias.append(
+                np.mean([d for s, t, d in i.rede.edges.data("distancia")])
+            )
         plt.xlabel("Tempo")
         plt.ylabel("Distância Média (km)")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
