@@ -137,3 +137,6 @@ class RedeComplexa:
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.title(f"Distância Média por mês da Rede {self.nome}")
         plt.plot(RedeComplexa.meses, listaDistancias)
+
+
+    
