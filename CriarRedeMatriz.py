@@ -32,3 +32,6 @@ def CriarRedeMatriz(caminho_csv): # Informar o caminho no seguinte formato './Da
     # tabela_cruzada = pd.crosstab(df['CNES'] , df['MUNIC_RES'])
     # tabela_cruzada.to_csv(f"./RedesMatrizFiltradas/Matriz{caminho_csv.split('/')[-1].split('.')[0]}.csv", index=True, header=True)
     
+for ano in range(15, 23):
+    for mes in range(1, 13):
+        CriarRedeMatriz(f"./DadosSUS/CSV/RDCE{ano}{mes:02d}.csv")
