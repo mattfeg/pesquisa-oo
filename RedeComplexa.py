@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+import csv
 from configGrafico import *
-
 
 class RedeComplexa:
     def __init__(self, nome) -> None:
@@ -137,6 +137,15 @@ class RedeComplexa:
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
         plt.title(f"Distância Média por mês da Rede {self.nome}")
         plt.plot(RedeComplexa.meses, listaDistancias)
-
-
     
+    def exportArestasCVS(self):
+        # Abra um arquivo CSV para escrita
+        with open('arestas.csv', mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['source', 'target'])  # Cabeçalho do CSV
+
+            # Escreva as arestas no arquivo CSV
+            for edge in self.__redeComplexa.edges():
+                writer.writerow(edge)
+
+        print("Arestas exportadas com sucesso para o arquivo 'arestas.csv'.")
