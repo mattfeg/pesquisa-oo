@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from Rede import *
-from RedeComplexa import *
+from Funções.Rede import *
+from Funções.RedeComplexa import *
 
 # from calcularDistancia import *
 
@@ -12,7 +12,7 @@ RC4 = RedeComplexa("Internação Domiciliar")  # REDE INTERNACOES DOMICILIARES
 RC5 = RedeComplexa("Tratamento Clínico")  # REDE INTERNACOES DOMICILIARES
 
 # ListaRedes = [RC1,RC2,RC3,RC4,RC5]
-ListaRedes = [RC1] #TESTAR APENAS COM 1 REDE
+ListaRedes = [RC1]  # TESTAR APENAS COM 1 REDE
 
 for i in ListaRedes:
     data_inicial = datetime(2015, 1, 1)  # DATA EXATA
@@ -40,10 +40,10 @@ for i in ListaRedes:
     # i.imprimirQuantidadePesos()
     # i.imprimirDensidade()
     # i.imprimirDistribuiçãoGraus()
-    #plt.figure()
-    #i.imprimirDistanciasPorMes()  # INCOMPLETO
-    #plt.show()
-    
+    # plt.figure()
+    # i.imprimirDistanciasPorMes()  # INCOMPLETO
+    # plt.show()
+
     i.exportArestasCVS()
 
 # Distancias

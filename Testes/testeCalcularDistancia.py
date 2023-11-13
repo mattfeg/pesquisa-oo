@@ -1,6 +1,6 @@
 import networkx as nx
 import pandas as pd
-from calcularDistancia import *
+from Funções.calcularDistancia import *
 
 df = pd.read_csv("./RedesMatrizCirurgia/MatrizRDCE1501.csv", sep=',', encoding='Latin1',index_col='CNES')
 rede = nx.DiGraph()

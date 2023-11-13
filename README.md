@@ -42,13 +42,13 @@ A distância percorrida por pacientes é uma análise crucial para entender a ac
 Resultados
 
 ### Rede de Cirurgias
-![Alt text](Cirurgias.png)
+![Alt text](/ArquivosREADME/Cirurgias.png)
 ### Rede Intercorrências
-![Alt text](Intercorr%C3%AAncias.png)
+![Alt text](/ArquivosREADME/Intercorrências.png)
 ### Rede Internações Domiciliares
-![Alt text](<Internações Domicilares.png>)
+![Alt text](</ArquivosREADME/Internações Domicilares.png>)
 ### Rede Completa
-![Alt text](Completa.png)
+![Alt text](/ArquivosREADME/Completa.png)
 
 ## Conclusão
 
