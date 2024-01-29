@@ -15,9 +15,13 @@ RC5 = RedeComplexa("Tratamento Clínico")  # REDE INTERNACOES DOMICILIARES
 ListaRedes = [RC1]
 
 for i in ListaRedes:
+    
     data_inicial = datetime(2015, 1, 1)  # DATA EXATA
-    data_final = datetime(2022, 12, 31)  # DATA EXATA
+    data_final = datetime(2022, 12, 31)  # DATA EXATA (Total)
+    # data_final = datetime(2019, 12, 31)  # DATA EXATA (5 anos)
+    # data_final = datetime(2015, 3, 31)  # DATA EXATA (3 meses)
     data = data_inicial
+    
     while data <= data_final:
         ano = str(data.year)[2:]
         mes = int(data.month)
@@ -32,17 +36,22 @@ for i in ListaRedes:
 
 for i in ListaRedes:
     i.criarRedeComplexa()
-
+    # plt.figure()
+    
     # Plots
-    # i.imprimirGraus()
-    # i.imprimirQuantidadeNos()
-    # i.imprimirQuantidadeArestas()
-    # i.imprimirQuantidadePesos()
-    # i.imprimirDensidade()
-    # i.imprimirDistribuiçãoGraus()
-    plt.figure()
-    i.imprimirDistanciasPorMes()  # INCOMPLETO
+    i.imprimirGraus()
+    i.imprimirQuantidadeNos()
+    i.imprimirQuantidadeArestas()
+    i.imprimirQuantidadePesos()
+    i.imprimirDensidade()
+    i.imprimirDistribuiçãoGraus()
+    
+    #i.imprimirDistanciasPorMes()  # INCOMPLETO
+    
     plt.show()
 
 # Distancias
 # gerarDfDistancias(RC1.redeComplexa)
+
+i.mostrarRedeComplexa()
+plt.show()

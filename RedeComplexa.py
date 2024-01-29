@@ -40,12 +40,17 @@ class RedeComplexa:
         for i in self.__listaRedes:
             i.MostrarRede()
 
-    # Infos do eixo dos Plots
+    # Infos do eixo dos Plots (Total)
     anos = np.arange(2015, 2024, 1)  # Ano Inicial +1 / Ano final + 2
     meses = np.arange(1, 97, 1)
 
+    # Para 3 meses
     # anos = np.arange(2015, 2016, 1)
     # meses = np.arange(1, 4, 1)
+    
+    # # Para 3 meses
+    # anos = np.arange(2015, 2020, 1)
+    # meses = np.arange(1, 61, 1)
 
     posicao_dos_anos = [(i - 2016 + 1) * 12 for i in anos]
 
@@ -132,8 +137,11 @@ class RedeComplexa:
             listaDistancias.append(
                 np.mean([d for s, t, d in i.rede.edges.data("distancia")])
             )
+        # plt.title(f"Distância Média por mês da Rede {self.nome}")
+        # plt.plot(RedeComplexa.meses, listaDistancias)
+        axs[2, 0].set_title(f"Distância Média por mês da Rede {self.nome}")
+        axs[2, 0].plot(RedeComplexa.meses, listaDistancias)
+        
         plt.xlabel("Tempo")
         plt.ylabel("Distância Média (km)")
         plt.xticks(RedeComplexa.posicao_dos_anos, RedeComplexa.anos)
-        plt.title(f"Distância Média por mês da Rede {self.nome}")
-        plt.plot(RedeComplexa.meses, listaDistancias)
